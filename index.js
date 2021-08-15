@@ -65,27 +65,6 @@ client.on('message', message => {
   });
 
  
-if (msg.content.startsWith("$kick ")) {
-if (msg.author.hasPermission(`BANNING_MEMBERS`) {
-    if (msg.mentions.members.first()) {
-        msg.mentions.members.first.kick().then((member) => {
-            msg.channel.send(":wave: " + member.displayName + " has been successfully kicked :point_right: ");
-        }).catch(() => {
-            msg.channel.send("I do not have permissions to do this");
-        });
-    }
-}else if (msg.content.startsWith("$ban ")) {
-   if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
-    if (msg.mentions.members.first()) {
-        msg.mentions.members.first.ban().then((member) => {
-            msg.channel.send(":wave: " + member.displayName + " has been successfully banned :point_right: ");
-        }).catch(() => {
-            msg.channel.send("I do not have permissions to do this");
-        });
-    }
-    } else {
-msg.reply(`you can't ban members ask owner for admin`)
-};
 
   
     
