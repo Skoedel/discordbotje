@@ -65,99 +65,30 @@ client.on('message', message => {
   });
 
  
-client.on('message', message => {
-    
-    if (!message.guild) return;
-  
-
-    if (message.content.startsWith('!kick')) {
-     
-      const user = message.mentions.users.first();
-   
-      if (user) {
-
-        const member = message.guild.member(user);
-
-        if (member) {
-          /**
-           * Kick the member
-           * Make sure you run this on a member, not a user!
-           * There are big differences between a user and a member
-           */
-          member
-            .kick('Optional reason that will display in the audit logs')
-            .then(() => {
-
-              message.reply(`Successfully kicked ${user.tag}`);
-            })
-            .catch(err => {
-             
-              message.reply('I was unable to kick the member');
-
-              console.error(err);
-            });
-        } else {
-
-          message.reply("That user isn't in this guild!");
-        }
-
-      } else {
-        message.reply("You didn't mention the user to kick!");
-      }
+if (msg.content.startsWith("$kick ")) {
+if (msg.author.hasPermission(`BANNING_MEMBERS`) {
+    if (msg.mentions.members.first()) {
+        msg.mentions.members.first.kick().then((member) => {
+            msg.channel.send(":wave: " + member.displayName + " has been successfully kicked :point_right: ");
+        }).catch(() => {
+            msg.channel.send("I do not have permissions to do this");
+        });
     }
-  });
- 
-
-
-
-client.on('message', message => {
-
-  if (!message.guild) return;
-
-  // if the message content starts with "!ban"
-  if (message.content.startsWith('!ban')) {
-  
-    const user = message.mentions.users.first();
-
-    if (user) {
-
-      const member = message.guild.members.resolve(user);
-      // If the member is in the guild
-      if (member) {
-        /**
-         * Ban the member
-         * Make sure you run this on a member, not a user!
-         * There are big differences between a user and a member
-         * Read more about what ban options there are over at
-         * https://discord.js.org/#/docs/main/master/class/GuildMember?scrollTo=ban
-         */
-        member
-          .ban({
-            reason: 'They were bad!',
-          })
-          .then(() => {
-
-            message.channel.send(`Successfully banned ${user.tag}`);
-          })
-          .catch(err => {
-
-            message.channel.send('I was unable to ban the member');
-            // Log the error
-            console.error(err);
-          });
-      } else {
-
-        message.channel.send("That user isn't in this guild!");
-      }
+}else if (msg.content.startsWith("$ban ")) {
+   if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
+    if (msg.mentions.members.first()) {
+        msg.mentions.members.first.ban().then((member) => {
+            msg.channel.send(":wave: " + member.displayName + " has been successfully banned :point_right: ");
+        }).catch(() => {
+            msg.channel.send("I do not have permissions to do this");
+        });
+    }
     } else {
+msg.reply(`you can't ban members ask owner for admin`)
+};
 
-      message.channel.send("You didn't mention the user to ban!");
-    }
-  }
-});
   
-     
-
+    
 
       client.on('message', message => {
         if(message.content.startsWith(prefix + "question")){
@@ -180,6 +111,7 @@ client.on('message', message => {
             });
           }
         });
+
 
 
 
